@@ -7,6 +7,8 @@ import Footer from "./components/Footer";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isFilterVisible, setIsFilterVisible] = useState(true); 
+
   const images = [
     { src: '/image1.png', alt: 'Image 1 description' },
 
@@ -102,12 +104,17 @@ export default function Home() {
             3425 Items
           </span>
           <div className={styles.midLeft1}>
-            <div className={styles.leftArrowLogo}>
-              <img className={styles.leftArrow} src="./arrow.png" />
-            </div>
-            <span className={styles.midLeft1Text} >
-              HIDE FILTER
-            </span>
+
+            <button  className={styles.midLeft1But} onClick={() => setIsFilterVisible(!isFilterVisible)}>
+
+              <div className={styles.leftArrowLogo}>
+                <img className={styles.leftArrow} src="./arrow.png" />
+              </div>
+              <span className={styles.midLeft1Text} >
+              {isFilterVisible ? "HIDE FILTER" : "SHOW FILTER"}
+              </span>
+            </button>
+
           </div>
 
           <div className={styles.midRight}>
@@ -128,8 +135,6 @@ export default function Home() {
               <li><a href="#"> POPULAR</a></li>
               <li><a href="#"> PRICE : HIGH TO LOW</a></li>
               <li><a href="#"> PRICE : LOW TO HIGH</a></li>
-
-
             </ul>)}
 
           </div>
@@ -140,7 +145,7 @@ export default function Home() {
 
       <div className={styles.mainContainer}>
 
-        <div className={styles.filters}>
+        <div className={styles.filters} style={{ display: isFilterVisible ? 'block' : 'none' }}>
 
           <div >
             <input type="checkbox" id="checkbox-id" />
@@ -169,17 +174,7 @@ export default function Home() {
           <Filter label="RAW MATERIALS" />
           <div className={styles.line}> </div>
           <Filter label="PATTERN" />
-
-
-
-
-
-
-
-
         </div>
-
-
 
         <div className={styles.products}>
           <div>
